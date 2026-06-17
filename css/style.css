@@ -931,9 +931,43 @@ img {
   .ajuda-media,
   .instagram-media {
     width: 100%;
-    height: 250px;
-    min-height: 250px;
     aspect-ratio: auto;
+  }
+
+  .hero-media {
+    height: 420px;
+    min-height: 420px;
+  }
+
+  .hero-media img {
+    object-position: center 20%;
+  }
+
+  .sobre-media {
+    height: 420px;
+    min-height: 420px;
+  }
+
+  .sobre-media img {
+    object-position: center top;
+  }
+
+  .ajuda-media {
+    height: 420px;
+    min-height: 420px;
+  }
+
+  .ajuda-media img {
+    object-position: center 15%;
+  }
+
+  .instagram-media {
+    height: 400px;
+    min-height: 400px;
+  }
+
+  .instagram-media img {
+    object-position: center 10%;
   }
 
   .whatsapp-float {

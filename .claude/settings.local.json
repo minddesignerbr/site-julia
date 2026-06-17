@@ -45,7 +45,8 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765/index.html)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug-profile --disable-gpu about:blank)",
       "Bash(python3 check_instagram_crop.py)",
-      "Bash(:)"
+      "Bash(:)",
+      "Bash(python3 check_desktop.py)"
     ]
   }
 }
