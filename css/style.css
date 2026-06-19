@@ -781,6 +781,24 @@ img {
   font-size: 0.85rem;
 }
 
+.footer-agency {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.05em;
+  margin-top: 0.4rem;
+}
+
+.footer-agency a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-agency a:hover {
+  color: #8A9E7F;
+}
+
 /* ---------- Placeholder TODO ---------- */
 .todo {
   background: rgba(201, 168, 76, 0.15);
