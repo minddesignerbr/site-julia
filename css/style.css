@@ -900,6 +900,18 @@ img {
     padding: 0 1.25rem;
   }
 
+  .nav-logo-extra {
+    display: none;
+  }
+
+  .nav-logo-name {
+    font-size: 0.95rem;
+  }
+
+  .nav-logo-crp {
+    font-size: 0.65rem;
+  }
+
   .hero-content {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
