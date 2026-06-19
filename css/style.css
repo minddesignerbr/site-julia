@@ -952,6 +952,14 @@ img {
     padding-right: 1.25rem;
   }
 
+  .hero {
+    padding-bottom: 2rem;
+  }
+
+  .paraquem {
+    padding-top: 2rem;
+  }
+
   .sobre-content,
   .ajuda-content,
   .instagram-content {
