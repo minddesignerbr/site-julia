@@ -1,7 +1,7 @@
 ---
 title: Ansiedade... o que é, por que acontece e o que você pode fazer.
 date: 2026-06-16T16:29:00.000-03:00
-thumbnail: ""
+thumbnail: unsplash.com/s/photos/anxious-woman
 excerpt: A ansiedade é uma das queixas mais comuns entre mulheres adultas.
   Entenda o que acontece no seu corpo e na sua mente e como a TCC pode ajudar.
 ---
