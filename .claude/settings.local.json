@@ -47,7 +47,9 @@
       "Bash(python3 check_instagram_crop.py)",
       "Bash(:)",
       "Bash(python3 check_desktop.py)",
-      "Bash(scp *)"
+      "Bash(scp *)",
+      "Bash(gh repo *)",
+      "Bash(python3 *)"
     ]
   }
 }

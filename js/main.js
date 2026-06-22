@@ -49,3 +49,84 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(img);
   });
 });
+
+// Blog — busca os posts publicados via Decap CMS direto do GitHub
+async function loadBlogPosts() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
+
+  try {
+    const response = await fetch(
+      'https://api.github.com/repos/minddesignerbr/site-julia/contents/_posts',
+      { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+    );
+
+    if (!response.ok) {
+      grid.innerHTML = '<div class="blog-loading">Nenhum artigo publicado ainda.</div>';
+      return;
+    }
+
+    const files = await response.json();
+    const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
+
+    if (mdFiles.length === 0) {
+      grid.innerHTML = '<div class="blog-loading">Nenhum artigo publicado ainda.</div>';
+      return;
+    }
+
+    const posts = await Promise.all(
+      mdFiles.slice(0, 3).map(async file => {
+        const res = await fetch(file.download_url);
+        const text = await res.text();
+        return parsePost(text, file.name);
+      })
+    );
+
+    grid.innerHTML = posts.map(post => `
+      <article class="blog-card">
+        ${post.thumbnail ? `<img class="blog-card-img" src="${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.title)}">` : '<div class="blog-card-img"></div>'}
+        <div class="blog-card-body">
+          <div class="blog-card-date">${formatDate(post.date)}</div>
+          <h3 class="blog-card-title">${escapeHtml(post.title)}</h3>
+          <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
+          <a href="#" class="blog-card-link">Ler artigo →</a>
+        </div>
+      </article>
+    `).join('');
+
+  } catch (error) {
+    grid.innerHTML = '<div class="blog-loading">Nenhum artigo publicado ainda.</div>';
+  }
+}
+
+function parsePost(text, filename) {
+  const frontmatter = {};
+  const fmMatch = text.match(/^---\n([\s\S]*?)\n---/);
+  if (fmMatch) {
+    fmMatch[1].split('\n').forEach(line => {
+      const [key, ...val] = line.split(': ');
+      if (key && val.length) frontmatter[key.trim()] = val.join(': ').trim().replace(/^"|"$/g, '');
+    });
+  }
+  return {
+    title: frontmatter.title || 'Sem título',
+    date: frontmatter.date || '',
+    excerpt: frontmatter.excerpt || '',
+    thumbnail: frontmatter.thumbnail || null,
+    slug: filename.replace('.md', ''),
+  };
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+}
+
+document.addEventListener('DOMContentLoaded', loadBlogPosts);
