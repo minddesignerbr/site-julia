@@ -158,6 +158,14 @@ img {
 }
 
 /* ---------- Blog ---------- */
+.blog-page-header {
+  padding: 10rem 5rem 3rem;
+  text-align: center;
+  background: var(--cream);
+}
+.blog-page-header .blog-subtitle {
+  margin-top: 1rem;
+}
 .blog-section {
   padding: 7rem 5rem;
   background: var(--cream);
@@ -242,6 +250,7 @@ img {
   grid-column: 1/-1;
 }
 @media (max-width: 768px) {
+  .blog-page-header { padding: 7rem 1.5rem 2rem; }
   .blog-section { padding: 4rem 1.5rem; }
   .blog-grid { grid-template-columns: 1fr; }
 }

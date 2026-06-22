@@ -74,8 +74,11 @@ async function loadBlogPosts() {
       return;
     }
 
+    const limit = grid.dataset.limit;
+    const selectedFiles = limit === 'all' ? mdFiles : mdFiles.slice(0, parseInt(limit || '3', 10));
+
     const posts = await Promise.all(
-      mdFiles.slice(0, 3).map(async file => {
+      selectedFiles.map(async file => {
         const res = await fetch(file.download_url);
         const text = await res.text();
         return parsePost(text, file.name);
