@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Júlia Alencar – Psicóloga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --crimson:    #70020f;
+  --crimson2:   #520009;
+  --cream:      #fff9ef;
+  --sand:       #C8B49A;
+  --sand-light: #EDE3D8;
+  --espresso:   #4c2b08;
+  --black:      #0D0805;
+  --muted:      #7A6558;
+  --border:     rgba(76,43,8,.1);
+  --border2:    rgba(76,43,8,.18);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --max-w: 1160px;
+  --py: 100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--black); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 48px; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 500;
+  letter-spacing: .06em; padding: 13px 32px; border-radius: 2px;
+  border: none; cursor: pointer; transition: all .2s;
+}
+.btn--crimson { background: var(--crimson); color: var(--cream); }
+.btn--crimson:hover { background: var(--crimson2); }
+.btn--outline { background: transparent; border: 1px solid var(--crimson); color: var(--crimson); }
+.btn--outline:hover { background: rgba(112,2,15,.06); }
+.btn--white { background: var(--cream); color: var(--crimson); }
+.btn--white:hover { background: #fff; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 22px 0; transition: background .3s, box-shadow .3s;
+}
+.nav--scrolled {
+  background: rgba(255,249,239,.96); backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--border2);
+}
+.nav__inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav__logo { font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: .01em; color: var(--black); }
+.nav__logo span { color: var(--crimson); }
+.nav__links { display: flex; gap: 36px; align-items: center; }
+.nav__links a { font-size: 13px; font-weight: 400; color: var(--muted); letter-spacing: .04em; transition: color .2s; }
+.nav__links a:hover { color: var(--black); }
+.nav__burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav__burger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: transform .3s, opacity .3s; }
+
+.nav__drawer {
+  position: fixed; top: 0; right: -100%; width: min(300px,80vw); height: 100vh;
+  background: var(--cream); z-index: 200; padding: 80px 32px 32px;
+  display: flex; flex-direction: column; gap: 8px;
+  box-shadow: -4px 0 40px rgba(0,0,0,.1); transition: right .35s cubic-bezier(.4,0,.2,1);
+}
+.nav__drawer.open { right: 0; }
+.nav__drawer a { font-size: 17px; color: var(--black); padding: 12px 0; border-bottom: 1px solid var(--border); }
+.nav__drawer-close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); }
+.nav__overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 199; }
+.nav__overlay.open { display: block; }
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+.hero__left {
+  background: var(--cream); display: flex; flex-direction: column;
+  justify-content: center; padding: 140px 72px 80px 48px;
+}
+.hero__eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+.hero__eyebrow-line { width: 40px; height: 1px; background: var(--crimson); }
+.hero__eyebrow span { font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--crimson); }
+.hero__heading {
+  font-family: var(--font-display); font-size: clamp(2.8rem, 4vw, 4.2rem);
+  font-weight: 300; line-height: 1.1; color: var(--black); margin-bottom: 28px; letter-spacing: -.01em;
+}
+.hero__heading em { font-style: italic; color: var(--crimson); }
+.hero__sub { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 420px; margin-bottom: 44px; }
+.hero__actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.hero__badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 52px; }
+.hero__badge {
+  background: var(--sand-light); border-radius: 2px;
+  padding: 8px 16px; font-size: 11px; font-weight: 500;
+  color: var(--espresso); letter-spacing: .06em; display: flex; align-items: center; gap: 8px;
+}
+.hero__badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--crimson); }
+.hero__right { position: relative; overflow: hidden; }
+.hero__right img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.hero__right::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to right, var(--cream) 0%, transparent 15%);
+}
+.hero__crp {
+  position: absolute; bottom: 40px; right: 40px; z-index: 2;
+  background: rgba(255,249,239,.92); backdrop-filter: blur(8px);
+  border-radius: 2px; padding: 14px 22px;
+  font-size: 10px; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+  border-left: 2px solid var(--crimson);
+}
+
+/* STRIP */
+.strip { background: var(--crimson); padding: 18px 0; overflow: hidden; }
+.strip__track { display: flex; white-space: nowrap; animation: strip-scroll 28s linear infinite; }
+.strip__item {
+  flex-shrink: 0; padding: 0 40px; font-size: 12px; font-weight: 400;
+  letter-spacing: .14em; text-transform: uppercase; color: rgba(255,249,239,.75);
+  display: flex; align-items: center; gap: 28px;
+}
+.strip__item::after { content: '✦'; font-size: 8px; color: rgba(255,249,239,.35); }
+@keyframes strip-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ABORDAGENS */
+.servicos { padding: var(--py) 0; background: var(--cream); }
+.section-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.section-eyebrow-line { width: 32px; height: 1px; background: var(--crimson); }
+.section-eyebrow span { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--crimson); }
+.section-heading {
+  font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 300; line-height: 1.15; color: var(--black); margin-bottom: 56px;
+  letter-spacing: -.01em; max-width: 560px;
+}
+.section-heading em { font-style: italic; color: var(--crimson); }
+
+.servicos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border2); border: 1px solid var(--border2); }
+.servico-card { background: var(--cream); overflow: hidden; position: relative; }
+.servico-img { height: 200px; overflow: hidden; background: var(--sand-light); display:flex; align-items:center; justify-content:center; }
+.servico-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.4,0,.2,1); }
+.servico-card:hover .servico-img img { transform: scale(1.06); }
+.servico-body { padding: 28px; }
+.servico-num { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--sand); margin-bottom: 10px; }
+.servico-name { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: var(--black); margin-bottom: 10px; line-height: 1.2; }
+.servico-desc { font-size: 13px; line-height: 1.65; color: var(--muted); }
+.servico-placeholder { font-size: 48px; opacity: .18; }
+
+/* PARA QUEM */
+.para-quem { padding: var(--py) 0; background: var(--sand-light); }
+.para-quem__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.para-quem__img { position: relative; height: 560px; }
+.para-quem__img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 2px; }
+.para-quem__badge {
+  position: absolute; bottom: -24px; right: -24px;
+  background: var(--crimson); color: var(--cream);
+  padding: 24px 28px; border-radius: 2px;
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 300;
+  line-height: 1.3; max-width: 200px;
+}
+.para-quem__list { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+.para-quem__item { display: flex; gap: 16px; align-items: flex-start; }
+.para-quem__icon {
+  width: 36px; height: 36px; border-radius: 2px; background: var(--crimson);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cream); font-size: 14px; flex-shrink: 0; margin-top: 2px;
+}
+.para-quem__item-text strong { display: block; font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+.para-quem__item-text span { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* SOBRE */
+.sobre { padding: var(--py) 0; background: var(--espresso); }
+.sobre__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.sobre__img { position: relative; height: 580px; }
+.sobre__img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 2px; }
+.sobre__crp {
+  position: absolute; top: 32px; left: -20px;
+  background: var(--crimson); padding: 16px 24px; border-radius: 2px;
+  font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--cream);
+}
+.sobre__eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+.sobre__eyebrow-line { width: 32px; height: 1px; background: var(--sand); }
+.sobre__eyebrow span { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
+.sobre__heading {
+  font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 300; color: var(--cream); line-height: 1.15;
+  margin-bottom: 24px; letter-spacing: -.01em;
+}
+.sobre__heading em { font-style: italic; color: var(--sand); }
+.sobre__text { font-size: 15px; line-height: 1.8; color: rgba(255,249,239,.65); margin-bottom: 24px; }
+.sobre__stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,249,239,.12); }
+.stat__val { font-family: var(--font-display); font-size: 2.4rem; font-weight: 300; color: var(--sand); line-height: 1; margin-bottom: 6px; }
+.stat__label { font-size: 11px; color: rgba(255,249,239,.5); letter-spacing: .08em; }
+
+/* PROCESSO */
+.processo { padding: var(--py) 0; background: var(--cream); }
+.processo__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border2); margin-top: 56px; }
+.processo__step { padding: 40px 32px; border-right: 1px solid var(--border2); position: relative; }
+.processo__step:last-child { border-right: none; }
+.processo__num { font-family: var(--font-display); font-size: 3.5rem; font-weight: 300; color: var(--sand-light); line-height: 1; margin-bottom: 20px; }
+.processo__title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 10px; }
+.processo__desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.processo__step::after { content: '→'; position: absolute; top: 40px; right: -14px; font-size: 18px; color: var(--sand); z-index: 1; }
+.processo__step:last-child::after { display: none; }
+
+/* FAQ */
+.faq { padding: var(--py) 0; background: var(--sand-light); }
+.faq__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; margin-top: 56px; }
+.faq__item { border-top: 1px solid var(--border2); }
+.faq__question {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 0; background: none; border: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 15px; font-weight: 500; color: var(--black); text-align: left; gap: 16px;
+}
+.faq__icon { font-size: 20px; color: var(--crimson); flex-shrink: 0; transition: transform .3s; }
+.faq__item.open .faq__icon { transform: rotate(45deg); }
+.faq__answer { font-size: 14px; color: var(--muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height .35s cubic-bezier(.4,0,.2,1), padding .35s; }
+.faq__item.open .faq__answer { max-height: 300px; padding-bottom: 22px; }
+
+/* CTA */
+.cta { padding: var(--py) 0; background: var(--crimson); }
+.cta__inner { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px; }
+.cta__heading { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; color: var(--cream); line-height: 1.15; }
+.cta__heading em { font-style: italic; color: var(--sand); }
+
+/* FOOTER */
+.footer { background: var(--black); padding: 56px 0 32px; }
+.footer__inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer__logo { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 12px; }
+.footer__logo span { color: var(--sand); }
+.footer__tagline { font-size: 13px; color: rgba(255,249,239,.4); line-height: 1.6; }
+.footer__title { font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--sand); margin-bottom: 20px; }
+.footer__links { display: flex; flex-direction: column; gap: 10px; }
+.footer__links a { font-size: 14px; color: rgba(255,249,239,.5); transition: color .2s; }
+.footer__links a:hover { color: var(--cream); }
+.footer__bottom { border-top: 1px solid rgba(255,249,239,.08); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+.footer__copy { font-size: 12px; color: rgba(255,249,239,.25); }
+.footer__brand { font-size: 12px; color: var(--sand); opacity: .6; }
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero__right { height: 50vh; }
+  .hero__left { padding: 120px 24px 60px; }
+  .nav__links { display: none; }
+  .nav__burger { display: flex; }
+  .container { padding: 0 24px; }
+  .servicos-grid { grid-template-columns: 1fr; }
+  .para-quem__inner, .sobre__inner, .cta__inner { grid-template-columns: 1fr; }
+  .para-quem__badge { display: none; }
+  .processo__grid { grid-template-columns: 1fr 1fr; }
+  .faq__grid { grid-template-columns: 1fr; }
+  .footer__inner { grid-template-columns: 1fr; }
+  .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .nav__inner { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="#">Júlia <span>Alencar</span></a>
+    <div class="nav__links">
+      <a href="#abordagens">Abordagens</a>
+      <a href="#para-quem">Para quem</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#faq">Dúvidas</a>
+      <a href="https://wa.me/5521900000000" class="btn btn--crimson">Agendar consulta</a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav__overlay" id="overlay"></div>
+<div class="nav__drawer" id="drawer">
+  <button class="nav__drawer-close" id="drawer-close">✕</button>
+  <a href="#abordagens">Abordagens</a>
+  <a href="#para-quem">Para quem</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#como-funciona">Como funciona</a>
+  <a href="#faq">Dúvidas</a>
+  <a href="https://wa.me/5521900000000" class="btn btn--crimson" style="margin-top:16px">Agendar consulta</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__left">
+    <div class="hero__eyebrow">
+      <div class="hero__eyebrow-line"></div>
+      <span>Psicologia · Rio de Janeiro</span>
+    </div>
+    <h1 class="hero__heading">
+      Um espaço seguro para<br>
+      <em>cuidar da sua<br>saúde emocional.</em>
+    </h1>
+    <p class="hero__sub">Atendimento psicológico online com base na Terapia Cognitivo-Comportamental. Um processo feito para você, no seu ritmo.</p>
+    <div class="hero__actions">
+      <a href="https://wa.me/5521900000000" class="btn btn--crimson">Agendar consulta</a>
+      <a href="#abordagens" class="btn btn--outline">Saiba mais</a>
+    </div>
+    <div class="hero__badges">
+      <div class="hero__badge">CRP 05/85862</div>
+      <div class="hero__badge">100% Online</div>
+      <div class="hero__badge">Sigilo garantido</div>
+    </div>
+  </div>
+  <div class="hero__right">
+    <img src="img/julia1.jpeg" alt="Júlia Alencar" />
+    <div class="hero__crp">CRP 05/85862 · Psicóloga</div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip__track">
+    <div class="strip__item">Ansiedade</div>
+    <div class="strip__item">Terapia Cognitivo-Comportamental</div>
+    <div class="strip__item">Autoestima</div>
+    <div class="strip__item">Relacionamentos</div>
+    <div class="strip__item">Regulação Emocional</div>
+    <div class="strip__item">Limites Saudáveis</div>
+    <div class="strip__item">Autocobrança</div>
+    <div class="strip__item">Ansiedade</div>
+    <div class="strip__item">Terapia Cognitivo-Comportamental</div>
+    <div class="strip__item">Autoestima</div>
+    <div class="strip__item">Relacionamentos</div>
+    <div class="strip__item">Regulação Emocional</div>
+    <div class="strip__item">Limites Saudáveis</div>
+    <div class="strip__item">Autocobrança</div>
+  </div>
+</div>
+
+<!-- ABORDAGENS -->
+<section class="servicos" id="abordagens">
+  <div class="container">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Abordagens</span></div>
+    <h2 class="section-heading">O que trabalhamos <em>juntas em terapia</em></h2>
+    <div class="servicos-grid">
+      <div class="servico-card">
+        <div class="servico-img"><img src="img/julia1.jpeg" alt="Ansiedade" /></div>
+        <div class="servico-body">
+          <div class="servico-num">01</div>
+          <div class="servico-name">Ansiedade</div>
+          <div class="servico-desc">Identificar os padrões de pensamento que alimentam a ansiedade e desenvolver estratégias para lidar com eles no dia a dia.</div>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-img"><img src="img/julia1_1.jpeg" alt="Autoestima" /></div>
+        <div class="servico-body">
+          <div class="servico-num">02</div>
+          <div class="servico-name">Autoestima e autoconfiança</div>
+          <div class="servico-desc">Construir uma relação mais gentil consigo mesma, reconhecendo seu valor além das expectativas externas.</div>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-img"><img src="img/julia2.jpeg" alt="Limites" /></div>
+        <div class="servico-body">
+          <div class="servico-num">03</div>
+          <div class="servico-name">Limites saudáveis</div>
+          <div class="servico-desc">Aprender a dizer não e estabelecer limites que tornem seus relacionamentos mais equilibrados e verdadeiros.</div>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-img"><img src="img/julia3.jpeg" alt="Autocobrança" /></div>
+        <div class="servico-body">
+          <div class="servico-num">04</div>
+          <div class="servico-name">Autocobrança e perfeccionismo</div>
+          <div class="servico-desc">Sair dos ciclos de perfeccionismo e sobrecarga para organizar suas prioridades de um jeito que respeite seu bem-estar.</div>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-img"><img src="img/julia3_1.jpeg" alt="Regulação emocional" /></div>
+        <div class="servico-body">
+          <div class="servico-num">05</div>
+          <div class="servico-name">Regulação emocional</div>
+          <div class="servico-desc">Desenvolver ferramentas para lidar com emoções intensas sem ser dominada por elas.</div>
+        </div>
+      </div>
+      <div class="servico-card">
+        <div class="servico-img"><img src="img/julia4.jpeg" alt="Relacionamentos" /></div>
+        <div class="servico-body">
+          <div class="servico-num">06</div>
+          <div class="servico-name">Relacionamentos</div>
+          <div class="servico-desc">Compreender os padrões que se repetem nas relações afetivas e construir vínculos mais saudáveis e conscientes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="para-quem" id="para-quem">
+  <div class="container">
+    <div class="para-quem__inner">
+      <div class="para-quem__img">
+        <img src="img/julia3.jpeg" alt="Para quem é a terapia" />
+        <div class="para-quem__badge">Cuidado que vai além da consulta</div>
+      </div>
+      <div>
+        <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Para quem é</span></div>
+        <h2 class="section-heading" style="margin-bottom:16px">Quem se beneficia <em>da psicoterapia</em></h2>
+        <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:32px">A terapia não é só para momentos de crise. É para quem quer se entender melhor e viver com mais leveza.</p>
+        <div class="para-quem__list">
+          <div class="para-quem__item">
+            <div class="para-quem__icon">✦</div>
+            <div class="para-quem__item-text">
+              <strong>Sente ansiedade frequente ou dificuldade de relaxar</strong>
+              <span>Pensamentos acelerados, preocupação constante, sensação de que algo vai dar errado.</span>
+            </div>
+          </div>
+          <div class="para-quem__item">
+            <div class="para-quem__icon">◎</div>
+            <div class="para-quem__item-text">
+              <strong>Tem dificuldade em dizer não ou impor limites</strong>
+              <span>Coloca o outro sempre em primeiro lugar e sente culpa quando tenta se priorizar.</span>
+            </div>
+          </div>
+          <div class="para-quem__item">
+            <div class="para-quem__icon">♡</div>
+            <div class="para-quem__item-text">
+              <strong>Sofre com autocobrança excessiva</strong>
+              <span>Nunca parece suficiente, mesmo quando faz tudo certo. Perfeicionismo que cansa.</span>
+            </div>
+          </div>
+          <div class="para-quem__item">
+            <div class="para-quem__icon">→</div>
+            <div class="para-quem__item-text">
+              <strong>Quer se entender melhor</strong>
+              <span>Busca uma escuta qualificada para dar sentido ao que sente e construir uma vida mais sua.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="container">
+    <div class="sobre__inner">
+      <div class="sobre__img">
+        <img src="img/julia2.jpeg" alt="Júlia Alencar" />
+        <div class="sobre__crp">CRP 05/85862</div>
+      </div>
+      <div>
+        <div class="sobre__eyebrow"><div class="sobre__eyebrow-line"></div><span>Sobre a psicóloga</span></div>
+        <h2 class="sobre__heading">Júlia Alencar, <em>psicóloga com foco em saúde emocional</em></h2>
+        <p class="sobre__text">Formada em Psicologia com especialização em Terapia Cognitivo-Comportamental. Atendo adultos de forma online, com uma escuta atenta e um processo estruturado para que você possa se entender e avançar.</p>
+        <p class="sobre__text">Acredito que a terapia é um espaço de honestidade — sem julgamentos, sem pressa. Cada pessoa traz uma história diferente, e o processo terapêutico respeita esse ritmo.</p>
+        <a href="https://wa.me/5521900000000" class="btn btn--white">Agendar consulta</a>
+        <div class="sobre__stats">
+          <div><div class="stat__val">TCC</div><div class="stat__label">Abordagem principal</div></div>
+          <div><div class="stat__val">100%</div><div class="stat__label">Online</div></div>
+          <div><div class="stat__val">RJ</div><div class="stat__label">Baseada no Rio</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="processo" id="como-funciona">
+  <div class="container">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Como funciona</span></div>
+    <h2 class="section-heading">Do primeiro contato <em>ao seu processo em 4 passos</em></h2>
+    <div class="processo__grid">
+      <div class="processo__step">
+        <div class="processo__num">01</div>
+        <div class="processo__title">Primeiro contato</div>
+        <div class="processo__desc">Me chame pelo WhatsApp. Respondo em até 24h em dias úteis para conversarmos sobre sua demanda.</div>
+      </div>
+      <div class="processo__step">
+        <div class="processo__num">02</div>
+        <div class="processo__title">Sessão inicial</div>
+        <div class="processo__desc">Uma conversa para nos conhecermos, entender o que te traz até aqui e alinhar o que você busca no processo.</div>
+      </div>
+      <div class="processo__step">
+        <div class="processo__num">03</div>
+        <div class="processo__title">Processo terapêutico</div>
+        <div class="processo__desc">Sessões semanais online, com duração de 50 minutos. Um espaço consistente e seguro para trabalharmos juntas.</div>
+      </div>
+      <div class="processo__step">
+        <div class="processo__num">04</div>
+        <div class="processo__title">Evolução contínua</div>
+        <div class="processo__desc">Acompanhamos sua evolução ao longo do tempo, ajustando o processo conforme você avança.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span>Dúvidas frequentes</span></div>
+    <h2 class="section-heading">Perguntas <em>mais comuns</em></h2>
+    <div class="faq__grid">
+      <div>
+        <div class="faq__item">
+          <button class="faq__question">Como funciona o atendimento online? <span class="faq__icon">+</span></button>
+          <div class="faq__answer">As sessões acontecem por videochamada, em plataforma segura. Você só precisa de um local tranquilo e conexão com internet.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Qual a duração e frequência das sessões? <span class="faq__icon">+</span></button>
+          <div class="faq__answer">As sessões têm 50 minutos de duração e acontecem semanalmente. A regularidade é importante para o progresso terapêutico.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">O atendimento é sigiloso? <span class="faq__icon">+</span></button>
+          <div class="faq__answer">Sim. O sigilo é um princípio ético fundamental da psicologia. Tudo que é compartilhado nas sessões permanece entre nós.</div>
+        </div>
+      </div>
+      <div>
+        <div class="faq__item">
+          <button class="faq__question">Como sei se a terapia é para mim? <span class="faq__icon">+</span></button>
+          <div class="faq__answer">Se você sente que algo não está bem, que quer se entender melhor ou que certos padrões se repetem na sua vida, a terapia pode ajudar. A sessão inicial serve exatamente para isso.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Atende por convênio? <span class="faq__icon">+</span></button>
+          <div class="faq__answer">O atendimento é particular. Forneço recibo para reembolso nos planos que oferecem essa modalidade.</div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question">Quanto tempo dura o processo terapêutico? <span class="faq__icon">+</span></button>
+          <div class="faq__answer">Depende de cada pessoa e de seus objetivos. A TCC costuma ter resultados visíveis em poucos meses, mas o processo é sempre personalizado.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <div class="cta__inner">
+      <h2 class="cta__heading">Pronta para dar<br><em>o primeiro passo?</em></h2>
+      <a href="https://wa.me/5521900000000" class="btn btn--white">Agendar agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__logo">Júlia <span>Alencar</span></div>
+        <div class="footer__tagline">Psicóloga · CRP 05/85862<br>Atendimento online · Rio de Janeiro</div>
+      </div>
+      <div>
+        <div class="footer__title">Links</div>
+        <div class="footer__links">
+          <a href="#abordagens">Abordagens</a>
+          <a href="#para-quem">Para quem é</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#faq">Dúvidas</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__title">Contato</div>
+        <div class="footer__links">
+          <a href="https://wa.me/5521900000000">WhatsApp</a>
+          <a href="https://instagram.com/juliaalencar.psico">@juliaalencar.psico</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__copy">© 2025 Júlia Alencar · CRP 05/85862</div>
+      <div class="footer__brand">Site por Minddesigner</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('nav--scrolled', window.scrollY > 40));
+
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
+const close = document.getElementById('drawer-close');
+const openDrawer = () => { drawer.classList.add('open'); overlay.classList.add('open'); };
+const closeDrawer = () => { drawer.classList.remove('open'); overlay.classList.remove('open'); };
+burger.addEventListener('click', openDrawer);
+close.addEventListener('click', closeDrawer);
+overlay.addEventListener('click', closeDrawer);
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+document.querySelectorAll('.faq__question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq__item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq__item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

@@ -13,59 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=22">
+  <link rel="stylesheet" href="css/style.css?v=21">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <style>
-    /* === OVERRIDES FORÇADOS === */
-    .btn-primary, .btn-whatsapp { background: #70020f !important; color: #fff !important; }
-    .btn-primary:hover, .btn-whatsapp:hover { background: #520009 !important; }
-    .label { color: #70020f !important; }
-    .eyebrow { color: #70020f !important; }
-    .accent { color: #70020f !important; }
-    .nav-logo-crp { color: #70020f !important; }
-    .accordion-trigger .arrow { color: #70020f !important; }
-    .faq-link { color: #70020f !important; }
-    .instagram .label { color: rgba(255,249,239,0.5) !important; }
-    .instagram-handle { color: #fff9ef !important; }
-    .instagram-content .btn-whatsapp { width: auto !important; align-self: flex-start !important; display: inline-flex !important; }
-    .tag { background: #70020f !important; color: #fff !important; }
-    .card { background: #F2EDE6 !important; border-left: 4px solid #70020f !important; }
-    .card h3 { color: #2A1505 !important; }
-    .card p { color: #4c2b08 !important; opacity: 1 !important; }
-    .card-icon { border-color: #70020f !important; color: #70020f !important; }
-    .ajuda { background: #F2EDE6 !important; }
-    .sobre { background: #F2EDE6 !important; }
-    .faq { background: #F2EDE6 !important; }
-    .contato-left .label { color: #C4939A !important; }
-    .contato h2 .accent { color: #C4939A !important; }
-    .footer-logo .accent { color: #C4939A !important; }
-
-    /* Gradiente hero nas fotos */
-    .sobre-media { position: relative !important; overflow: hidden !important; }
-    .sobre-media::before {
-      content: '';
-      position: absolute !important;
-      inset: 0 !important;
-      z-index: 1 !important;
-      background: linear-gradient(to right, #F2EDE6 0%, transparent 15%) !important;
-      pointer-events: none !important;
-    }
-    .ajuda-media { position: relative !important; overflow: hidden !important; }
-    .ajuda-media::before {
-      content: '';
-      position: absolute !important;
-      inset: 0 !important;
-      z-index: 1 !important;
-      background: linear-gradient(to left, #F2EDE6 0%, transparent 15%) !important;
-      pointer-events: none !important;
-    }
-
-  </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ===================== NAV ===================== -->
   <header class="nav">
     <div class="container">
       <a href="#" class="nav-logo">
@@ -84,7 +37,7 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="hero-content">
       <span class="eyebrow">Psicóloga Clínica</span>
@@ -96,17 +49,18 @@
       </div>
     </div>
     <div class="hero-media">
-      <img src="img/julia1.jpeg" alt="Júlia Alencar, psicóloga" class="anim-img anim-right">
+      <img src="img/julia1.jpeg" alt="Júlia Alencar, psicóloga, em pé com blazer verde" class="anim-img anim-right">
     </div>
   </section>
 
-  <!-- PARA QUEM É -->
+  <!-- ===================== PARA QUEM É ===================== -->
   <section class="paraquem" id="paraquem">
     <div class="container">
       <div class="section-header">
         <span class="label">Para quem é</span>
         <h2>Você se reconhece em algum desses cenários?</h2>
       </div>
+
       <div class="cards-grid">
         <div class="card">
           <span class="card-icon">✓</span>
@@ -139,13 +93,14 @@
           <p>Aquela exaustão que vai além do físico, a sensação de estar sempre no limite, sem energia para as coisas que antes te faziam bem.</p>
         </div>
       </div>
+
       <div class="paraquem-cta">
         <a href="https://wa.me/5521990695000" class="btn btn-whatsapp" target="_blank" rel="noopener">Agendar sua consulta</a>
       </div>
     </div>
   </section>
 
-  <!-- ABORDAGEM — efeito hero: foto direita, texto esquerda -->
+  <!-- ===================== COMO A PSICOTERAPIA PODE TE AJUDAR ===================== -->
   <section class="ajuda">
     <div class="ajuda-content">
       <span class="label">Abordagem</span>
@@ -159,17 +114,15 @@
         <span class="tag">Sigilo garantido</span>
       </div>
     </div>
-    <div class="ajuda-media" style="position:relative;overflow:hidden;">
-      <img src="img/julia3.jpeg" alt="Júlia Alencar ao lado do monitor" class="anim-img anim-right">
-      <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,#F2EDE6 0%,transparent 12%);pointer-events:none;"></div>
+    <div class="ajuda-media">
+      <img src="img/julia3.jpeg" alt="Júlia Alencar ao lado do monitor, em atendimento online" class="anim-img anim-right">
     </div>
   </section>
 
-  <!-- SOBRE MIM — efeito hero: foto esquerda, texto direita -->
+  <!-- ===================== SOBRE MIM ===================== -->
   <section class="sobre" id="sobre">
-    <div class="sobre-media" style="position:relative;overflow:hidden;">
-      <img src="img/julia2.jpeg" alt="Júlia Alencar sorrindo" class="anim-img anim-left">
-      <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to left,#F2EDE6 0%,transparent 25%);pointer-events:none;"></div>
+    <div class="sobre-media">
+      <img src="img/julia2.jpeg" alt="Júlia Alencar sorrindo, blusa branca, fundo terracota" class="anim-img anim-left">
     </div>
     <div class="sobre-content">
       <span class="label">Sobre mim</span>
@@ -177,11 +130,13 @@
       <p>Sou Júlia Alencar, psicóloga clínica com foco em psicoterapia individual para mulheres adultas. Escolhi trabalhar exclusivamente com mulheres porque acredito que nós carregamos demandas muito específicas.</p>
       <p>Me graduei em Psicologia pela Universidade Veiga de Almeida e, desde então, investi na especialização em áreas que considero essenciais para quem sofre com ansiedade, oscilações de humor, dificuldade de lidar com as próprias emoções, entre outras questões. Fiz pós-graduação em Terapia Cognitivo-Comportamental pela PUC-RS, uma das abordagens mais estudadas e com maior eficácia comprovada no tratamento dessas questões e me especializei em Regulação Emocional pela Vrije Universiteit Amsterdam, na Holanda, aprofundando meu olhar sobre como as emoções se formam, se intensificam e podem ser manejadas de forma mais saudável no dia a dia.</p>
       <p>Além disso, mantenho formação contínua em saúde mental da mulher, porque acredito que cuidar bem exige estudo constante. Tudo isso me permite oferecer a você um processo que vai além do acolhimento.</p>
-      <div class="crp-line">CRP 05/85862</div>
+      <div class="crp-line">
+        CRP 05/85862
+      </div>
     </div>
   </section>
 
-  <!-- BLOG -->
+  <!-- ===================== BLOG ===================== -->
   <section id="blog" class="blog-section">
     <div class="blog-header">
       <span class="label">Blog</span>
@@ -196,7 +151,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- ===================== FAQ ===================== -->
   <section class="faq" id="faq">
     <div class="container">
       <div class="faq-intro">
@@ -205,6 +160,7 @@
         <p>Se a sua dúvida não estiver aqui, pode me perguntar diretamente pelo WhatsApp.</p>
         <a href="#contato" class="faq-link">Falar comigo →</a>
       </div>
+
       <div class="accordion">
         <div class="accordion-item">
           <button class="accordion-trigger">
@@ -215,6 +171,7 @@
             <p>As sessões acontecem por videochamada, em uma plataforma segura. Você só precisa de um local tranquilo e conexão com a internet: pode ser de casa, do trabalho ou de onde for mais confortável para você.</p>
           </div>
         </div>
+
         <div class="accordion-item">
           <button class="accordion-trigger">
             <span>Quanto tempo dura cada sessão e qual a frequência?</span>
@@ -224,6 +181,7 @@
             <p>As sessões têm 50 minutos e geralmente acontecem semanalmente, sempre no mesmo horário, criando um espaço fixo de cuidado na sua rotina.</p>
           </div>
         </div>
+
         <div class="accordion-item">
           <button class="accordion-trigger">
             <span>O que eu falo na terapia fica em sigilo?</span>
@@ -233,6 +191,7 @@
             <p>Sim. O sigilo é um princípio ético fundamental da profissão. Tudo o que é compartilhado nas sessões é confidencial.</p>
           </div>
         </div>
+
         <div class="accordion-item">
           <button class="accordion-trigger">
             <span>Como sei se estou pronta para começar?</span>
@@ -242,6 +201,7 @@
             <p>Não existe um momento certo ou um nível mínimo de sofrimento para começar a terapia. Se você sente que quer se entender melhor ou que algo merece atenção, esse já é motivo suficiente.</p>
           </div>
         </div>
+
         <div class="accordion-item">
           <button class="accordion-trigger">
             <span>Quanto custa e como faço para agendar?</span>
@@ -255,26 +215,25 @@
     </div>
   </section>
 
-  <!-- INSTAGRAM -->
+  <!-- ===================== INSTAGRAM ===================== -->
   <section class="instagram" id="instagram">
-    <div class="instagram-media" style="position:relative;overflow:hidden;">
+    <div class="instagram-media">
       <img src="img/julia5.jpeg" alt="Júlia Alencar" class="anim-img anim-left">
-      <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to right,#2A2520 0%,transparent 25%);pointer-events:none;"></div>
     </div>
     <div class="instagram-content">
       <span class="label">Redes sociais</span>
       <h2>Me acompanhe no Instagram</h2>
       <p class="subtitle">Compartilho conteúdos sobre saúde mental, autoconhecimento e bem-estar emocional pensados especialmente para mulheres.</p>
       <span class="instagram-handle">@psijuliaalencar</span>
-      <a href="https://www.instagram.com/psijuliaalencar" class="btn btn-whatsapp" style="width:auto;align-self:flex-start;" target="_blank" rel="noopener">Seguir no Instagram</a>
+      <a href="https://www.instagram.com/psijuliaalencar" class="btn btn-whatsapp" target="_blank" rel="noopener">Seguir no Instagram</a>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
+  <!-- ===================== CTA FINAL / CONTATO ===================== -->
   <section class="contato" id="contato">
     <div class="container">
       <div class="contato-left">
-        <span class="label" style="color:#C4939A;">Vamos conversar</span>
+        <span class="label">Vamos conversar</span>
         <h2>Pronta para dar <span class="accent">o primeiro passo?</span></h2>
         <p class="subtitle">Mande uma mensagem!<br>Não precisa ter as palavras certas, começar já é o suficiente.</p>
       </div>
@@ -291,7 +250,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-logo">Júlia Alencar Ribas Cruz <span class="accent">· Psicóloga</span></div>

@@ -3,15 +3,15 @@
    =========================================================== */
 
 :root {
-  --sage:        #70020f;
-  --sage-light:  #C4939A;
-  --terra:       #4c2b08;
-  --gold:        #70020f;
-  --bordeaux:    #520009;
-  --cream:       #fff9ef;
-  --warm-white:  #EDE3D8;
+  --sage:        #8A9E7F;
+  --sage-light:  #C5D4BC;
+  --terra:       #C4845A;
+  --gold:        #C9A84C;
+  --bordeaux:    #7B2D3E;
+  --cream:       #FAF7F2;
+  --warm-white:  #F2EDE6;
   --ink:         #2A2520;
-  --mid:         #4c2b08;
+  --mid:         #6B5F56;
 }
 
 /* ---------- Reset & base ---------- */
@@ -78,7 +78,10 @@ img {
   font-style: italic;
 }
 
-/* ---------- Scroll-entrance animation (imagens) ---------- */
+/* ---------- Scroll-entrance animation (imagens) ----------
+   Visíveis por padrão: o JS adiciona ".anim-ready" para esconder
+   a imagem antes de animá-la. Se o JS não rodar, a foto permanece
+   visível (sem animação) em vez de ficar invisível para sempre. */
 .anim-img {
   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
@@ -139,8 +142,7 @@ img {
   padding: 1rem 2.5rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  background: #70020f;
-  color: #FFFFFF;
+  background: var(--sage);
 }
 
 .btn-primary:hover,
@@ -151,24 +153,7 @@ img {
 .btn-ghost {
   background: transparent;
   color: var(--ink);
-  border: 1px solid rgba(112, 2, 15, 0.3);
-}
-
-.btn-ghost:hover {
-  border-color: var(--sage);
-  color: var(--sage);
-}
-
-.btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.btn-whatsapp svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
+  border: 1px solid rgba(42, 37, 32, 0.2);
 }
 
 /* ---------- Blog ---------- */
@@ -224,7 +209,7 @@ img {
 }
 .blog-card-date {
   font-size: 0.72rem;
-  color: rgba(255, 249, 239, 0.5);
+  color: var(--gold);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -269,6 +254,23 @@ img {
   .blog-grid { grid-template-columns: 1fr; }
 }
 
+.btn-ghost:hover {
+  border-color: var(--sage);
+  color: var(--sage);
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btn-whatsapp svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
 /* ---------- WhatsApp flutuante ---------- */
 .whatsapp-float {
   position: fixed;
@@ -307,10 +309,10 @@ img {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(255, 249, 239, 0.92);
+  background: rgba(250, 247, 242, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(112, 2, 15, 0.1);
+  border-bottom: 1px solid rgba(138, 158, 127, 0.15);
 }
 
 .nav .container {
@@ -364,16 +366,17 @@ img {
   display: none;
 }
 
-/* ---------- Hero — efeito Pulso ---------- */
+/* ---------- Hero ---------- */
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
+  padding-top: 80px;
   align-items: stretch;
 }
 
 .hero-content {
-  padding: 8rem 4rem 3rem 2rem;
+  padding: 3rem 4rem 3rem 2rem;
   max-width: 560px;
   display: flex;
   flex-direction: column;
@@ -381,7 +384,7 @@ img {
 }
 
 .hero-content .eyebrow {
-  color: rgba(255, 249, 239, 0.5);
+  color: var(--gold);
   margin-bottom: 1.5rem;
 }
 
@@ -391,7 +394,7 @@ img {
 
 .hero-content h1 .accent {
   font-style: italic;
-  color: var(--sage);
+  color: var(--terra);
 }
 
 .hero-content .subtitle {
@@ -429,16 +432,6 @@ img {
   object-position: top center;
 }
 
-/* gradiente sutil na borda esquerda da foto — efeito Pulso */
-.hero-media::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(to right, var(--cream) 0%, transparent 12%);
-  pointer-events: none;
-}
-
 /* ---------- Sobre ---------- */
 .sobre {
   display: grid;
@@ -465,7 +458,7 @@ img {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(112, 2, 15, 0.06), transparent);
+  background: linear-gradient(135deg, rgba(196, 132, 90, 0.08), transparent);
 }
 
 .sobre-content {
@@ -481,7 +474,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.75rem;
-  color: rgba(255, 249, 239, 0.5);
+  color: var(--gold);
   margin-bottom: 1rem;
   display: block;
 }
@@ -492,7 +485,7 @@ img {
 
 .sobre-content h2 .accent {
   font-style: italic;
-  color: var(--sage);
+  color: var(--terra);
 }
 
 .sobre-content p {
@@ -565,11 +558,11 @@ img {
 }
 
 .card {
-  background: var(--sage);
-  border-left: 4px solid var(--sage);
+  background: #C4A882;
+  border-left: 4px solid var(--terra);
   border-radius: 16px;
   padding: 2.5rem;
-  box-shadow: 0 12px 28px rgba(76, 43, 8, 0.15);
+  box-shadow: 0 12px 28px rgba(138, 158, 127, 0.25);
 }
 
 .card-icon {
@@ -624,7 +617,7 @@ img {
 
 .ajuda-content h2 .accent {
   font-style: italic;
-  color: var(--sage);
+  color: var(--terra);
 }
 
 .ajuda-content p {
@@ -706,11 +699,11 @@ img {
 }
 
 .accordion-item {
-  border-bottom: 1px solid rgba(112, 2, 15, 0.15);
+  border-bottom: 1px solid rgba(138, 158, 127, 0.25);
 }
 
 .accordion-item:first-child {
-  border-top: 1px solid rgba(112, 2, 15, 0.15);
+  border-top: 1px solid rgba(138, 158, 127, 0.25);
 }
 
 .accordion-trigger {
@@ -765,6 +758,7 @@ img {
   align-items: center;
 }
 
+
 .contato h2 {
   color: var(--cream);
   margin-bottom: 1.25rem;
@@ -772,7 +766,7 @@ img {
 
 .contato h2 .accent {
   font-style: italic;
-  color: rgba(255, 249, 239, 0.6);
+  color: var(--sage-light);
 }
 
 .contato .subtitle {
@@ -844,14 +838,14 @@ img {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1.4rem;
-  color: rgba(255, 249, 239, 0.6);
+  color: var(--sage-light);
   margin-bottom: 2.25rem;
 }
 
 /* ---------- Footer ---------- */
 .footer {
   background: var(--ink);
-  border-top: 1px solid rgba(255, 249, 239, 0.1);
+  border-top: 1px solid rgba(250, 247, 242, 0.1);
   padding: 2rem 0;
 }
 
@@ -872,7 +866,7 @@ img {
 }
 
 .footer-logo .accent {
-  color: rgba(255, 249, 239, 0.6);
+  color: var(--sage);
 }
 
 .footer-copy {
@@ -899,12 +893,12 @@ img {
 }
 
 .footer-agency a:hover {
-  color: rgba(255, 249, 239, 0.6);
+  color: #8A9E7F;
 }
 
 /* ---------- Placeholder TODO ---------- */
 .todo {
-  background: rgba(76, 43, 8, 0.1);
+  background: rgba(201, 168, 76, 0.15);
   border: 1px dashed var(--gold);
   padding: 0.1rem 0.4rem;
   font-size: 0.85em;
@@ -971,10 +965,6 @@ img {
 
   .hero-media {
     order: -1;
-  }
-
-  .hero-media::before {
-    background: linear-gradient(to bottom, var(--cream) 0%, transparent 12%);
   }
 
   .ajuda-media {
@@ -1169,8 +1159,4 @@ img {
     bottom: 1rem;
     right: 1rem;
   }
-}
-
-.instagram-content .btn-whatsapp {
-  width: auto;
 }
