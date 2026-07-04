@@ -4,21 +4,19 @@
    =========================================================== */
 
 :root {
-  --creme:       #F6F2EB;
-  --bege:        #DCCFBE;
-  --azul:        #6F8290;
-  --marrom:      #5C4338;
-  --vinho:       #7A3B43;
-  --oliva:       #8C9A7D;
-  --ink:         #5C4338;
-  --mid:         #7a6558;
-  --cream:       #F6F2EB;
-  --warm-white:  #DCCFBE;
-  --sage:        #7A3B43;
-  --sage-light:  #C4A898;
-  --terra:       #8C9A7D;
-  --gold:        #7A3B43;
-  --bordeaux:    #5a2830;
+  /* Paleta oficial — Júlia Alencar · "Acolhimento, profundidade e transformação" */
+  --creme:         #F8F2EB;  /* Fundo principal                  50% */
+  --bege:          #DCCFBE;  /* Cards e seções                   20% */
+  --azul:          #6F8290;  /* Botões secundários, links         15% */
+  --marrom:        #5C4338;  /* Títulos e textos                  10% */
+  --vinho:         #7A3B43;  /* Botões principais                  5% */
+  --oliva:         #8C9A7D;  /* Detalhes e ícones                    */
+
+  /* Tom derivado — não é cor oficial, mas necessário para texto secundário */
+  --mid:           #7a6255;  /* Marrom suavizado — subtítulos, parágrafos de apoio */
+
+  /* Hover de botões primários — vinho ligeiramente escurecido */
+  --vinho-escuro:  #5a2830;
 }
 
 /* ---------- Reset & base ---------- */
@@ -105,7 +103,7 @@ img { display: block; max-width: 100%; filter: saturate(0.9); }
 }
 
 .btn-primary:hover,
-.btn-whatsapp:hover { background: var(--bordeaux); }
+.btn-whatsapp:hover { background: var(--vinho-escuro); }
 
 .btn-ghost {
   background: transparent;
@@ -150,7 +148,7 @@ img { display: block; max-width: 100%; filter: saturate(0.9); }
 .blog-card-link {
   font-size: 0.8rem; color: var(--vinho); text-decoration: none;
   font-weight: 500; letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--sage-light); padding-bottom: 2px;
+  border-bottom: 1px solid var(--bege); padding-bottom: 2px;
 }
 .blog-cta { text-align: center; }
 .blog-loading { text-align: center; color: var(--mid); font-size: 0.9rem; padding: 3rem; grid-column: 1/-1; }
@@ -174,7 +172,7 @@ img { display: block; max-width: 100%; filter: saturate(0.9); }
 /* ---------- Nav ---------- */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(246, 242, 235, 0.95);
+  background: rgba(248, 242, 235, 0.95);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(92, 67, 56, 0.12);
 }
