@@ -91,7 +91,7 @@ async function loadBlogPosts() {
           <div class="blog-card-date">${formatDate(post.date)}</div>
           <h3 class="blog-card-title">${escapeHtml(post.title)}</h3>
           <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
-          <a href="#" class="blog-card-link">Ler artigo →</a>
+          <a href="/post?slug=${escapeHtml(post.slug)}" class="blog-card-link">Ler artigo →</a>
         </div>
       </article>
     `).join('');
