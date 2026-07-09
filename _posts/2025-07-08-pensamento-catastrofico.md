@@ -1,6 +1,6 @@
 ---
 title: "Pensamento catastrófico: por que sua mente sempre imagina o pior cenário?"
-date: "2025-07-08"
+date: "2026-06-01"
 excerpt: "O telefone toca em um horário incomum e sua mente já cria as piores possibilidades. Entenda o que é o pensamento catastrófico e como lidar com ele."
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "O poder de dizer não: por que colocar limites pode ser tão difícil?"
-date: "2025-07-01"
+date: "2026-05-01"
 excerpt: "Muitas pessoas sabem que precisam dizer não, mas ainda sentem uma enorme dificuldade em colocar esse limite em prática. Entenda por que isso acontece e como mudar."
 ---
 
