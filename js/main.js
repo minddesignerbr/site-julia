@@ -22,10 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Animação de entrada das imagens — vanilla JS, sem dependências.
-// As fotos já são visíveis por padrão (ver CSS); aqui apenas marcamos
-// como "anim-ready" (escondidas) as que ainda não entraram na viewport,
-// para então revelá-las com a transição ao rolar a página.
+// Animação de entrada das imagens
 document.addEventListener('DOMContentLoaded', () => {
   if (!('IntersectionObserver' in window)) return;
 
@@ -67,7 +64,9 @@ async function loadBlogPosts() {
     }
 
     const files = await response.json();
-    const mdFiles = files.filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep');
+    const mdFiles = files
+      .filter(f => f.name.endsWith('.md') && f.name !== '.gitkeep')
+      .sort((a, b) => b.name.localeCompare(a.name)); // mais recente primeiro
 
     if (mdFiles.length === 0) {
       grid.innerHTML = '<div class="blog-loading">Nenhum artigo publicado ainda.</div>';
@@ -87,7 +86,7 @@ async function loadBlogPosts() {
 
     grid.innerHTML = posts.map(post => `
       <article class="blog-card">
-        ${post.thumbnail ? `<img class="blog-card-img" src="${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.title)}">` : '<div class="blog-card-img"></div>'}
+        ${post.thumbnail ? `<img class="blog-card-img" src="${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.title)}">` : ''}
         <div class="blog-card-body">
           <div class="blog-card-date">${formatDate(post.date)}</div>
           <h3 class="blog-card-title">${escapeHtml(post.title)}</h3>
