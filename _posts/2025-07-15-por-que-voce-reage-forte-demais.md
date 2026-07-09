@@ -1,6 +1,6 @@
 ---
 title: "Por que você reage forte demais (e depois se sente mal por isso)?"
-date: "2026-07-01"
+date: "2026-07-09"
 excerpt: "Você reage com intensidade e depois se pergunta: por que eu sou assim? Entenda o que está por trás das reações emocionais intensas e como lidar com elas."
 ---
 
