@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18245631963"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18245631963');
+</script>
   <meta charset="UTF-8">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -66,6 +74,35 @@
     .post-body p {
       margin-bottom: 1.5rem;
       color: #5C4338;
+    }
+    .post-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      font-weight: 400;
+      color: #5C4338;
+      margin: 2.5rem 0 1rem;
+      line-height: 1.3;
+    }
+    .post-body ul,
+    .post-body ol {
+      margin: 0 0 1.5rem;
+      padding-left: 1.5rem;
+      color: #5C4338;
+    }
+    .post-body li {
+      margin-bottom: 0.5rem;
+    }
+    .post-body blockquote {
+      margin: 0 0 1.5rem;
+      padding: 1rem 1.5rem;
+      border-left: 3px solid #6F8290;
+      background: #F2EDE6;
+      color: #5C4338;
+      font-style: italic;
+    }
+    .post-body a {
+      color: #7A3B43;
+      text-decoration: underline;
     }
     .post-back {
       display: inline-flex;
@@ -177,7 +214,9 @@
         if (!res.ok) throw new Error('Post não encontrado');
 
         const data = await res.json();
-        const text = atob(data.content.replace(/\n/g, ''));
+        const binary = atob(data.content.replace(/\n/g, ''));
+        const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+        const text = new TextDecoder('utf-8').decode(bytes);
         const post = parsePostFull(text);
 
         document.title = `${post.title} · Júlia Alencar`;
@@ -222,24 +261,43 @@
       };
     }
 
-    function markdownToHtml(md) {
-      return md
-        .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-        .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    function inlineFormat(text) {
+      return escapeHtml(text)
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
-        .replace(/\n\n/g, '</p><p>')
-        .replace(/^(?!<h[23]>)(.+)$/gm, (match) => {
-          if (match.startsWith('<')) return match;
-          return match;
-        })
-        .split('\n\n')
-        .map(block => {
-          if (block.startsWith('<h2>') || block.startsWith('<h3>')) return block;
-          if (block.trim() === '') return '';
-          return `<p>${block}</p>`;
-        })
-        .join('\n');
+        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    }
+
+    function markdownToHtml(md) {
+      const blocks = md.trim().split(/\n\n+/);
+      return blocks.map(block => {
+        block = block.trim();
+        if (!block) return '';
+
+        let m = block.match(/^###\s+(.+)$/);
+        if (m) return `<h3>${inlineFormat(m[1])}</h3>`;
+
+        m = block.match(/^##\s+(.+)$/);
+        if (m) return `<h2>${inlineFormat(m[1])}</h2>`;
+
+        if (/^-\s+/.test(block)) {
+          const items = block.split('\n').map(l => l.replace(/^-\s+/, '').trim()).filter(Boolean);
+          return `<ul>${items.map(i => `<li>${inlineFormat(i)}</li>`).join('')}</ul>`;
+        }
+
+        if (/^\d+\.\s+/.test(block)) {
+          const items = block.split('\n').map(l => l.replace(/^\d+\.\s+/, '').trim()).filter(Boolean);
+          return `<ol>${items.map(i => `<li>${inlineFormat(i)}</li>`).join('')}</ol>`;
+        }
+
+        if (/^>\s?/.test(block)) {
+          const text = block.split('\n').map(l => l.replace(/^>\s?/, '')).join(' ');
+          return `<blockquote>${inlineFormat(text)}</blockquote>`;
+        }
+
+        const text = block.split('\n').join(' ');
+        return `<p>${inlineFormat(text)}</p>`;
+      }).join('\n');
     }
 
     loadPost();
